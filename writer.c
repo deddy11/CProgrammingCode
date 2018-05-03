@@ -7,7 +7,7 @@ int main()
 {
     int fd;
     char * myfifo = "/tmp/myfifo";
-    char * command = "ls";
+    char * command = "roscore";
 
     /* create the FIFO (named pipe) */
     mkfifo(myfifo, 0666);
