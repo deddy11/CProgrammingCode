@@ -1,0 +1,13 @@
+output.txt
+reader
+reader.c
+readercpp
+reader.cpp
+readerUAV
+readerUAV.cpp
+readerUGV
+readerUGV.cpp
+writer
+writer.c
+writercpp
+writer.cpp

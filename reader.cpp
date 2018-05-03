@@ -25,8 +25,11 @@ int main()
         cout << "fd = " << fd << endl;
         read(fd, buf, MAX_BUF);
         // printf("Received: %s\n", buf);
-        system(buf);
-        strcpy(buf,"");
+        if(fd != -1) {
+            strcat(buf," > output.txt");
+            system(buf);
+            strcpy(buf,"");
+        }
         close(fd);
         delay(delayPeriod);
     }

@@ -1,28 +1,35 @@
-#include <fcntl.h>
-#include <stdio.h>
+#include <iostream>
+#include <bits/stdc++.h>
 #include <time.h>
 #include <sys/stat.h>
-#include <string.h>
+#include <cstring>
+#include <fcntl.h>
 #include <unistd.h>
 
 #define MAX_BUF 1024
+
+using namespace std;
 
 void delay(int milliseconds);
 
 int main()
 {
     int fd;
-    char * myfifo = "/tmp/myfifo";
+    char myfifo[] = "/tmp/UAVtemp";
+    char *myfifo2 = myfifo;
     char buf[MAX_BUF];
     int delayPeriod = 500;
 
     while(strcmp(buf,"stop") != 0){
         fd = open(myfifo, O_RDONLY);
-        printf("fd = %d\n", fd);
+        // cout << "fd = " << fd << endl;
         read(fd, buf, MAX_BUF);
         // printf("Received: %s\n", buf);
-        system(buf);
-        strcpy(buf,"");
+        if(fd != -1) {
+            // strcat(buf," > outputUAV.txt");
+            system(buf);
+            strcpy(buf,"");
+        }
         close(fd);
         delay(delayPeriod);
     }
