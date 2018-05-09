@@ -17,18 +17,22 @@ int main()
     int fd;
     char myfifo[] = "/tmp/UAVtemp";
     char *myfifo2 = myfifo;
+    char check[MAX_BUF];
     char buf[MAX_BUF];
     int delayPeriod = 500;
 
-    while(strcmp(buf,"stop") != 0){
+    while(strcmp(buf,"close") != 0){
         fd = open(myfifo, O_RDONLY);
         // cout << "fd = " << fd << endl;
-        read(fd, buf, MAX_BUF);
+        
         // printf("Received: %s\n", buf);
         if(fd != -1) {
-            // strcat(buf," > outputUAV.txt");
-            system(buf);
-            strcpy(buf,"");
+            read(fd, buf, MAX_BUF);
+            if(strcmp(buf,"close") != 0) {
+                system(buf);
+                strcpy(buf,"");
+            }
+
         }
         close(fd);
         delay(delayPeriod);

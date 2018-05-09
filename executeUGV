@@ -1,0 +1,17 @@
+#!/usr/bin/expect -f
+
+# Get a Bash shell
+spawn -noecho bash
+
+# Wait for a prompt
+expect "uav@uav:~/Deddy$ "
+
+# Type something
+send "gnome-terminal -x sh -c 'cd ~/Deddy/QGroundProject/CProgrammingCode; ./readerUGV'\n"
+
+send "exit\n"
+
+# Hand over control to the user
+interact
+
+exit
